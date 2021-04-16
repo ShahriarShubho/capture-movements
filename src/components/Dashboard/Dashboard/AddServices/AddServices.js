@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Col, Button } from "react-bootstrap";
+import { UserContext } from "../../../../App";
+import swal from 'sweetalert';
+import axios from "axios";
 
 const AddServices = () => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext)
   const [info,  setInfo] = useState({})
   const [file, setFile] = useState(null)
 
@@ -12,28 +16,42 @@ const AddServices = () => {
  
   }
   const handleChangeFile = event => {
-    const newFile = event.target.files[0];
-    setFile(newFile)
+    const imageData = new FormData();
+    imageData.set("key", "07945127d96230e24a48010e87b1a758");
+    imageData.append("image", event.target.files[0]);
+
+    axios
+      .post("https://api.imgbb.com/1/upload", imageData)
+      .then(function (response) {
+        setFile(response.data.data.display_url);
+      })
+      .catch(function (error) {
+        swal("Opppsss!", `${error}`, "error");
+      });
   }
  
   const handleSubmit = event => {
-    const formData = new FormData()
-  formData.append('file', file)
-  formData.append('name', info.name)
-  formData.append('email', info.price)
-  formData.append('description', info.description)
+    const eventData = {
+      name: info.name,
+      price: info.price,
+      description: info.description,
+      img: file,
+    };
 
-  fetch('http://localhost:5000/addServices', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-  })
-  .catch(error => {
-    console.error(error)
-  })
+    fetch("http://localhost:5000/addServices", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(eventData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          swal("Nice Work!", "Service successfully added!", "success");
+          // document.getElementById("name").value = "";
+          // document.getElementById("price").value = "";
+          // document.getElementById("photo").value = null;
+        }
+      });
   event.preventDefault()
 }
   

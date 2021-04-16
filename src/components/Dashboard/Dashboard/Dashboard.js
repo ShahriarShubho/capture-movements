@@ -1,9 +1,12 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
+import BookList from '../BookList/BookList';
+import Booking from '../MakeAdmin/Booking/Booking';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageService from '../ManageService/ManageService';
 import OrderList from '../OrderList/OrderList';
+import UserReview from '../UserReview/UserReview';
 import AddServices from './AddServices/AddServices';
 
 const Dashboard = () => {
@@ -14,6 +17,15 @@ const Dashboard = () => {
     <ul>
         <li>
           <Link to={`/home`}>Home</Link>
+        </li>
+        <li>
+          <Link to={`${url}/booking`}>Booking</Link>
+        </li>
+        <li>
+          <Link to={`${url}/bookList`}>Booked List</Link>
+        </li>
+        <li>
+          <Link to={`${url}/userReview`}>Review</Link>
         </li>
         <li>
           <Link to={`${url}/order`}>OrderList</Link>
@@ -34,6 +46,15 @@ const Dashboard = () => {
       <Switch>
         <Route exact path={path}>
           <h3>Please select a topic.</h3>
+        </Route>
+        <Route path={`${path}/booking`}>
+        <Booking/>
+        </Route>
+        <Route path={`${path}/bookList`}>
+            <BookList/>
+        </Route>
+        <Route path={`${path}/userReview`}>
+          <UserReview/>
         </Route>
         <Route path={`${path}/order`}>
         <OrderList/>

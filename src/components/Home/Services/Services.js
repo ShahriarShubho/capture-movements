@@ -1,40 +1,37 @@
-import React from 'react';
-import ServiceDetails from '../ServiceDetails/ServiceDetails';
+import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
+import ServiceDetails from "../ServiceDetails/ServiceDetails";
 
 const Services = () => {
-    const serviceData = [
-        {
-            title: 'Wedding Ceremony',
-            img : 'https://image.freepik.com/free-photo/groom-putting-wedding-ring-bride-finger-wedding-ceremony_182527-2447.jpg',
-            price : 5000
-        },
-        {
-            title: 'marriage Ceremony',
-            img : 'https://image.freepik.com/free-photo/groom-putting-wedding-ring-bride-finger-wedding-ceremony_182527-2447.jpg',
-            price : 5000
-        },
-        {
-            title: 'Birthday Ceremony',
-            img : 'https://image.freepik.com/free-photo/groom-putting-wedding-ring-bride-finger-wedding-ceremony_182527-2447.jpg',
-            price : 5000
-        },
-        {
-            title: 'love Ceremony',
-            img : 'https://image.freepik.com/free-photo/groom-putting-wedding-ring-bride-finger-wedding-ceremony_182527-2447.jpg',
-            price : 5000
-        }
-
-    ]
-    return (
-        <section className='container-fluid'>
-            <h2 className="text-center py-4">This Services We Provide</h2>
-            <div className="row">
-            {
-                serviceData.map(service => <ServiceDetails service={service}></ServiceDetails>)
-            }
-            </div>
-        </section>
-    );
+  const [serviceData, setServiceData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true)
+    fetch("http://localhost:5000/services")
+      .then((response) => response.json())
+      .then((data) => {
+        setServiceData(data);
+        setLoading(false)
+      });
+  }, []);
+  return (
+    <section className="container-fluid">
+      <h2 className="text-center py-4">This Services We Provide</h2>
+      <div className="row">
+        {loading && (
+          <div className="m-auto">
+            <Spinner animation="grow" variant="primary" />
+            <Spinner animation="grow" variant="secondary" />
+            <Spinner animation="grow" variant="success" />
+            <h3 className="float-right ml-1">Loading...</h3>
+          </div> 
+        )}
+        {serviceData?.map((service) => (
+          <ServiceDetails key={service._id} service={service}></ServiceDetails>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Services;
