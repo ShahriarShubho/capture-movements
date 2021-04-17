@@ -1,19 +1,23 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router';
+import { Route, Switch, useParams, useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 import BookList from '../BookList/BookList';
-import Booking from '../MakeAdmin/Booking/Booking';
+import Booking from '../Booking/Booking';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageService from '../ManageService/ManageService';
 import OrderList from '../OrderList/OrderList';
 import UserReview from '../UserReview/UserReview';
-import AddServices from './AddServices/AddServices';
+import AddServices from '../AddServices/AddServices';
+import './Dashboard.css'
+import PrivateRoute from '../../LogIn/PrivateRoute/PrivateRoute';
 
 const Dashboard = () => {
     let { path, url } = useRouteMatch();
+    const {id} = useParams()
     return (
         <div className="row">
-    <div className="col-md-3">
+    <div className="col-md-3 sidebar">
+      <h1>{id}</h1>
     <ul>
         <li>
           <Link to={`/home`}>Home</Link>
@@ -47,15 +51,15 @@ const Dashboard = () => {
         <Route exact path={path}>
           <h3>Please select a topic.</h3>
         </Route>
-        <Route path={`${path}/booking`}>
+        <PrivateRoute path={`${path}/booking/:id`}>
         <Booking/>
-        </Route>
+        </PrivateRoute>
         <Route path={`${path}/bookList`}>
             <BookList/>
         </Route>
-        <Route path={`${path}/userReview`}>
+        <PrivateRoute path={`${path}/userReview`}>
           <UserReview/>
-        </Route>
+        </PrivateRoute>
         <Route path={`${path}/order`}>
         <OrderList/>
         </Route>

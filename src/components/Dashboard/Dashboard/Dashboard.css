@@ -1,0 +1,12 @@
+.sidebar{
+    background-image: linear-gradient(40deg, #19d3ae,#0fcfec);
+    height: "100vh"
+}
+.sidebar li{
+    margin-top: 2em;
+    list-style: none;
+}
+.sidebar li:hover{
+    display: inline-block;
+    transform: translate(5px);
+}

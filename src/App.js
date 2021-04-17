@@ -11,6 +11,8 @@ import NotFound from "./components/NotFound/NotFound";
 import LogIn from "./components/LogIn/LogIn/LogIn";
 import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "./components/LogIn/PrivateRoute/PrivateRoute";
+import Booking from "./components/Dashboard/Booking/Booking";
+import Test from "./components/text/Test";
 
 
 export const UserContext = createContext()
@@ -21,6 +23,8 @@ function App() {
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
    <Router>
      {loggedInUser.name}
+
+
       <Switch>
           <Route path="/home">
             <Home/>
@@ -34,6 +38,9 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          <PrivateRoute path="/dashboard/booking/:id">
+          <Booking/>
+        </PrivateRoute>
           <Route path="*">
            <NotFound/>
           </Route>

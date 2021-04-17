@@ -24,8 +24,9 @@ const LogIn = () => {
       .auth()
       .signInWithPopup(googleProvider)
       .then((result) => {
-        const { displayName, email } = result.user;
-        const newUser = { name: displayName, email: email };
+        console.log(result.user)
+        const { displayName, email, photoURL } = result.user;
+        const newUser = { name: displayName, email: email, image: photoURL };
         setLoggedInUser(newUser);
         history.replace(from);
       })
