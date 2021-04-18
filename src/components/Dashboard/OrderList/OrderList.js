@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Table, Form } from "react-bootstrap";
+import { Table, Form, Spinner } from "react-bootstrap";
 import swal from "sweetalert";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("https://powerful-badlands-46047.herokuapp.com/orders")
       .then((response) => response.json())
-      .then((data) => setOrders(data));
+      .then((data) =>{ 
+        setLoading(false);
+        setOrders(data)});
   }, [orders]);
 
   const handleChange = (e, id) => {
@@ -41,6 +45,7 @@ const OrderList = () => {
             <th>Status</th>
           </tr>
         </thead>
+        {loading &&   <Spinner className="my-5" animation="grow" variant="primary" />}
         {orders.map((order, index) => (
           <tbody>
             <tr>

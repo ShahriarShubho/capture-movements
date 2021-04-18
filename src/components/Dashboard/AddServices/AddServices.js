@@ -93,9 +93,9 @@ const AddServices = () => {
             <small>Please wait a few second before submit for upload image</small>
           </Form.Group>
         </Form.Row>
-        <Button variant="primary" type="submit">
+        <Button variant="primary mb-5" type="submit">
           Submit
-        </Button> <br/>
+        </Button>
       </Form>
     </div>
   );

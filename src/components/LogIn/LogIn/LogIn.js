@@ -10,13 +10,12 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 const LogIn = () => {
-
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   const history = useHistory();
   const location = useLocation();
 
-  const { from } = location.state || { from: { pathname: "/" }};
+  const { from } = location.state || { from: { pathname: "/" } };
 
   const handleGoogleSingIn = () => {
     var googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -24,7 +23,7 @@ const LogIn = () => {
       .auth()
       .signInWithPopup(googleProvider)
       .then((result) => {
-        console.log(result.user)
+        console.log(result.user);
         const { displayName, email, photoURL } = result.user;
         const newUser = { name: displayName, email: email, image: photoURL };
         setLoggedInUser(newUser);
@@ -47,7 +46,7 @@ const LogIn = () => {
         <div onClick={handleGoogleSingIn} className="singInMethod">
           <img
             className="iconImg img-fluid"
-            src="https://www.flaticon.com/svg/vstatic/svg/281/281764.svg?token=exp=1618512960~hmac=4763b0967ef38a3cc642874804bf6061"
+            src="https://img-authors.flaticon.com/google.jpg"
             alt=""
           />{" "}
           <button className="btn font-weight-bold">Continue With Google</button>

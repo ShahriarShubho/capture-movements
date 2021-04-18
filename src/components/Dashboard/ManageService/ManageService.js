@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Spinner, Table } from 'react-bootstrap';
 import swal from 'sweetalert';
 
 const ManageService = () => {
     const [service, setService] = useState([])
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {     
         fetch("https://powerful-badlands-46047.herokuapp.com/services")
           .then((response) => response.json())
           .then((data) => {
-            setService(data);
+            setService(data)
+            setLoading(false);
          
           });
       }, [service]);
@@ -36,6 +39,7 @@ const ManageService = () => {
             <th>Action</th>
           </tr>
         </thead>
+        {loading &&   <Spinner className="my-5" animation="grow" variant="primary" />}
         {service.map((service, index) =>
         <tbody>
           <tr>

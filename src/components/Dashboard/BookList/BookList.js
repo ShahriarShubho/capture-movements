@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import { UserContext } from "../../../App";
 
 const BookList = () => {
 
   const [booking, setBooking] = useState();
   const [loggedInUser] = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     fetch(
@@ -13,11 +14,15 @@ const BookList = () => {
         loggedInUser.email
     )
       .then((response) => response.json())
-      .then((data) => setBooking(data));
+      .then((data) => {
+        setLoading(false)
+        setBooking(data)});
   }, [loggedInUser.email]);
   return (
     <div>
       <div className="row">
+        {loading &&   <Spinner className="m-auto py-5" animation="grow" variant="primary" />}
+
         {booking?.map((booking) => (
           <div className="col-md-6">
             <Card  style={{height: "auto", width: "225px"}} className="m-3">

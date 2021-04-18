@@ -85,12 +85,12 @@ const Dashboard = () => {
           <PrivateRoute path={`${path}/booking/:id`}>
             <Booking />
           </PrivateRoute>
-          <PrivateRoute path={`${path}/bookList`}>
+          <Route path={`${path}/bookList`}>
             <BookList />
-          </PrivateRoute>
-          <PrivateRoute path={`${path}/userReview`}>
+          </Route>
+          <Route path={`${path}/userReview`}>
             <UserReview />
-          </PrivateRoute>
+          </Route>
           <Route path={`${path}/order`}>
             <OrderList />
           </Route>
