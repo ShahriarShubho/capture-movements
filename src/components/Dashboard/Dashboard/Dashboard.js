@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Switch, useParams, useRouteMatch } from "react-router";
 import { Link } from "react-router-dom";
 import BookList from "../BookList/BookList";
@@ -10,11 +10,23 @@ import UserReview from "../UserReview/UserReview";
 import AddServices from "../AddServices/AddServices";
 import "./Dashboard.css";
 import PrivateRoute from "../../LogIn/PrivateRoute/PrivateRoute";
+import { UserContext } from "../../../App";
 
 const Dashboard = () => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext)
   let { path, url } = useRouteMatch();
   const { id } = useParams();
-  // const [isAdmin, setIsAdmin] = React.useState(false)
+  const [isAdmin, setIsAdmin] = React.useState(false)
+
+  useEffect(() => {
+    fetch("http://localhost:5000/isAdmin", {
+      method: "POST",
+      headers: { 'Content-Type' : 'application/json'},
+      body : JSON.stringify({email : loggedInUser.email})
+  })
+  .then(res => res.json())
+  .then(data => setIsAdmin(data))
+  }, [])
 
   return (
     <div className="row container-fluid">
@@ -24,16 +36,7 @@ const Dashboard = () => {
           <li>
             <Link to={`/home`}>Home</Link>
           </li>
-          <li>
-            <Link to={`${url}/booking`}>Booking</Link>
-          </li>
-          <li>
-            <Link to={`${url}/bookList`}>Booked List</Link>
-          </li>
-          <li>
-            <Link to={`${url}/userReview`}>Review</Link>
-          </li>
-          <li>
+          { isAdmin ? <div><li>
             <Link to={`${url}/order`}>OrderList</Link>
           </li>
           <li>
@@ -44,7 +47,18 @@ const Dashboard = () => {
           </li>
           <li>
             <Link to={`${url}/manageService`}> Manage Service</Link>
+          </li></div> :
+           <div>
+                       <li>
+            <Link to={`${url}/booking`}>Booking</Link>
           </li>
+          <li>
+            <Link to={`${url}/bookList`}>Booked List</Link>
+          </li>
+          <li>
+            <Link to={`${url}/userReview`}>Review</Link>
+          </li>
+          </div> }
         </ul>
       </div>
 
