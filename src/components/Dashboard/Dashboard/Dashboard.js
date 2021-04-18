@@ -12,11 +12,11 @@ import "./Dashboard.css";
 import PrivateRoute from "../../LogIn/PrivateRoute/PrivateRoute";
 import { UserContext } from "../../../App";
 import { Navbar, Nav } from "react-bootstrap";
+import Footer from "../../Home/Footer/Footer";
 
 const Dashboard = () => {
   const [loggedInUser] = useContext(UserContext)
   let { path, url } = useRouteMatch();
-  const { id } = useParams();
   const [isAdmin, setIsAdmin] = React.useState(false)
 
   useEffect(() => {
@@ -40,34 +40,33 @@ const Dashboard = () => {
     </Nav>
   </Navbar.Collapse>
 </Navbar>
-    <div className="row container-fluid">
+    <div className="row container-fluid bg-light">
       <div className="col-md-2 sidebar">
-        <h1>{id}</h1>
         <ul>
           <li>
-            <Link to={`/home`}>Home</Link>
+            <Link className="linkStyle" to={`/home`}>Home</Link>
           </li>
           { isAdmin ? <div><li>
-            <Link to={`${url}/order`}>OrderList</Link>
+            <Link className="linkStyle" to={`${url}/order`}>OrderList</Link>
           </li>
           <li>
-            <Link to={`${url}/addService`}>Add Service</Link>
+            <Link className="linkStyle" to={`${url}/addService`}>Add Service</Link>
           </li>
           <li>
-            <Link to={`${url}/makeAdmin`}>Make Admin</Link>
+            <Link className="linkStyle" to={`${url}/makeAdmin`}>Make Admin</Link>
           </li>
           <li>
-            <Link to={`${url}/manageService`}> Manage Service</Link>
+            <Link className="linkStyle" to={`${url}/manageService`}> Manage Service</Link>
           </li></div> :
            <div>
                        <li>
-            <Link to={`${url}/booking`}>Booking</Link>
+            <Link className="linkStyle" to="#">Booking</Link>
           </li>
           <li>
-            <Link to={`${url}/bookList`}>Booked List</Link>
+            <Link className="linkStyle" to={`${url}/bookList`}>Booked List</Link>
           </li>
           <li>
-            <Link to={`${url}/userReview`}>Review</Link>
+            <Link className="linkStyle" to={`${url}/userReview`}>Review</Link>
           </li>
           </div> }
         </ul>
@@ -76,7 +75,12 @@ const Dashboard = () => {
       <div className="col-md-10">
         <Switch>
           <Route exact path={path}>
-            <h3>Please select a topic.</h3>
+            <div className="text-center mt-5">
+            <h2>Hello, {loggedInUser.name}</h2>
+            <h3>Welcome To Dashboard</h3>
+            <h5>Please, select a topic what you choose!!!!! <br/> Given the left sitebar</h5>
+         
+            </div>
           </Route>
           <PrivateRoute path={`${path}/booking/:id`}>
             <Booking />
@@ -102,6 +106,7 @@ const Dashboard = () => {
         </Switch>
       </div>
     </div>
+    <Footer/>
     </section>
   );
 };

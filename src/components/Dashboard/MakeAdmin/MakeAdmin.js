@@ -26,16 +26,19 @@ const MakeAdmin = () => {
 
   return (
     <div>
-       <form onSubmit={handleSubmit(onSubmit)}>
+      <h3 className="text-center py-4">Make a admin given the bellow data</h3>
+      <div className="m-auto" style={{width : '350px'}}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <strong>Name  : </strong>
-      <input className="mb-3" placeholder="Enter Admin Name" {...register("name", { required: true })} />
+      <input className="mb-3 border-primary rounder-lg" placeholder="Enter Admin Name" {...register("name", { required: true })} />
       {errors.name && <span className="text-danger">name field is required</span>} <br/>
       <strong>Email : </strong>
-      <input className="mb-3" placeholder="Enter Admin Email address" {...register("email", { required: true })} /> 
+      <input className="mb-3 border-primary rounder-lg" placeholder="Enter Admin Email address" {...register("email", { required: true })} /> 
       {errors.email && <span className="text-danger">Must Add a Email</span>} <br/>
       
-      <input type="submit" />
+      <input className="btn btn-primary mt-3" type="submit" />
     </form>
+      </div>
     </div>
   );
 };

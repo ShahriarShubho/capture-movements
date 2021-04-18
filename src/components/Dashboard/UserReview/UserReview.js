@@ -29,21 +29,24 @@ const UserReview = () => {
 
     return (
         <div>
+            <h3 className="text-center py-4">Please Give us your feedback</h3>
+        <div style={{width : "400px"}} className="m-auto">
     <form onSubmit={handleSubmit(onSubmit)}>
         <strong>Your Name</strong><br/>
-      <input placeholder="Enter Your Name" {...register("name", { required: true })} /><br/>
-      {errors.name && <span>This field is required</span>} <br/>
+      <input className="w-100 border-info rounded" placeholder="Enter Your Name" {...register("name", { required: true })} /><br/>
+      {errors.name && <span className="text-danger">Name is required</span>} <br/>
 
         <strong>Your Opinion</strong><br/>
-      <input placeholder="Good/Bad/Batter/Best" {...register("ratting", { required: true })} /><br/>
-      {errors.ratting && <span>This field is required</span>} <br/>
+      <input className="w-100 border-info rounded" placeholder="Good/Bad/Batter/Best" {...register("ratting", { required: true })} /><br/>
+      {errors.ratting && <span className="text-danger">This field is required</span>} <br/>
 
         <strong>Short Description : </strong><br/>
-      <textarea placeholder="Description" {...register("description", { required: true })}></textarea><br/>
-      {errors.description && <span>This field is required</span>} <br/>
+      <textarea className="w-100 border-info rounded" placeholder="Description" {...register("description", { required: true })}></textarea><br/>
+      {errors.description && <span className="text-danger">please write a short description</span>} <br/>
       
-      <input type="submit" />
+      <input className="btn btn-primary mb-5" type="submit" />
     </form>
+        </div>
         </div>
     );
 };

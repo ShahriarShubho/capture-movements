@@ -6,3 +6,8 @@
     margin-top: 2em;
     list-style: none;
 }
+.linkStyle{
+    text-decoration: none !important;
+    color: rgb(240, 232, 232);
+    font-weight: bold;
+}

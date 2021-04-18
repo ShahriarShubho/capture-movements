@@ -25,7 +25,7 @@ const ManageService = () => {
           })
       }
     return (
-        <div>
+        <div className="text-center">
             <h3>Manage services</h3>
             <Table striped bordered hover responsive>
         <thead>

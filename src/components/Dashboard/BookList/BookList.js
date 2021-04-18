@@ -20,16 +20,16 @@ const BookList = () => {
       <div className="row">
         {booking?.map((booking) => (
           <div className="col-md-6">
-            <Card className="m-3">
-              <Card.Img className="w-100" variant="top" src={booking.image} />
+            <Card  style={{height: "auto", width: "225px"}} className="m-3">
+              <Card.Img className="img-fluid" variant="top" src={booking.image} />
               <Card.Body>
                 <Card.Title>{booking.serviceName}</Card.Title>
                 <Card.Text>{booking.description}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <small className="text-muted">
+                <strong className="text-muted text-center">
                   Status update : {booking.status}
-                </small>
+                </strong>
               </Card.Footer>
             </Card>
           </div>

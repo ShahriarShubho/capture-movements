@@ -10,3 +10,8 @@
     margin: 5px;
     cursor: pointer;
 }
+
+  .payCard{
+      display: block;
+      margin : 0 auto;
+  }

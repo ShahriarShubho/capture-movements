@@ -51,6 +51,7 @@ const AddServices = () => {
 
   return (
     <div>
+      <h3 className="text-center mt-4">Add Service</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridText">
@@ -89,11 +90,12 @@ const AddServices = () => {
           <Form.Group className="mt-2" as={Col} controlId="formGridFile">
             <Form.Label>Upload Service Photos</Form.Label>
             <Form.Control name="file" onChange={handleChangeFile} type="file" />
+            <small>Please wait a few second before submit for upload image</small>
           </Form.Group>
         </Form.Row>
         <Button variant="primary" type="submit">
           Submit
-        </Button>
+        </Button> <br/>
       </Form>
     </div>
   );
