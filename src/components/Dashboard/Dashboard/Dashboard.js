@@ -27,6 +27,7 @@ const Dashboard = () => {
   })
   .then(res => res.json())
   .then(data => setIsAdmin(data))
+  
   }, [])
 
   return (
