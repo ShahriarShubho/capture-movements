@@ -1,5 +1,6 @@
 import { Carousel } from "react-bootstrap";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HeaderSlider = () => {
   return (
@@ -8,41 +9,47 @@ const HeaderSlider = () => {
         <img
           style={{ height: "350px" }}
           className="d-block w-100"
-          src="https://images.unsplash.com/photo-1608408207651-86ddc7413e1c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGxhbmRzY2FwZSUyMHdlZGRpbmclMjBwaG90b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"
+          src="https://images.unsplash.com/photo-1572867867026-2165e773671d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80"
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>Wedding Photos</h3>
-          <p>We Provide wedding ceremony function photo</p>
-          <button className="btn btn-primary">Get Booking</button>
+          <h3>The Artsy Lens</h3>
+          <p>The Dark Room Portrait Studio</p>
+          <Link to="/services">
+            <button className="btn btn-primary">Get All Services</button>
+          </Link>{" "}
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item >
+      <Carousel.Item>
         <img
           style={{ height: "350px" }}
           className="d-block w-100"
-          src="https://image.freepik.com/free-photo/beautiful-viewpoint-koh-nangyuan-island-surat-thani-thailand_335224-1097.jpg"
+          src="https://images.unsplash.com/photo-1554941426-e9604e34bc94?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
           alt="Second slide"
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Bark-tastic Photography</h3>
+          <p>Flutter Me Shutters Photography</p>
+          <Link to="/services">
+            <button className="btn btn-primary">Get All Services</button>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>  
+      <Carousel.Item>
         <img
           style={{ height: "350px" }}
           className="d-block w-100"
-          src="https://image.freepik.com/free-photo/beautiful-koh-nangyuan-island-surat-thani-thailand_335224-1084.jpg"
+          src="https://images.unsplash.com/photo-1493952113579-dfa2cfd5398b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80"
           alt="Third slide"
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          <h3>Natural Light Photography</h3>
+          <p>Choose Your Own Adventure Photography</p>
+          <Link to="/services">
+            <button className="btn btn-primary">Get All Services</button>
+          </Link>{" "}
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

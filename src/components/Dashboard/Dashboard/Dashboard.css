@@ -6,7 +6,3 @@
     margin-top: 2em;
     list-style: none;
 }
-.sidebar li:hover{
-    display: inline-block;
-    transform: translate(5px);
-}

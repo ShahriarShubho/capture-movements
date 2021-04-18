@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 
 const MakeAdmin = () => {
-
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const adminData = {

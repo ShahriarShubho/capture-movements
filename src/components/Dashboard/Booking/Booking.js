@@ -4,9 +4,12 @@ import { UserContext } from "../../../App";
 import ProcessPayment from "../ProcessPayment/ProcessPayment";
 
 const Booking = () => {
-    const[loggedInUser, setLoggedInUser] = useContext(UserContext)
+  const[loggedInUser, setLoggedInUser] = useContext(UserContext)
   const { id } = useParams();
   const [booking, setBooking] = useState({});
+  const [paymentSuccess, setPaymentSuccess] = useState(null)
+  console.log(paymentSuccess)
+  console.log(booking)
 
   useEffect(() => {
     fetch(`http://localhost:5000/bookingById/${id}`)
@@ -15,6 +18,27 @@ const Booking = () => {
         setBooking(data);
       });
   }, []);
+
+
+const handleSubmitBooking = () => {
+  const bookingData = {
+    name: loggedInUser.name,
+    email: loggedInUser.email,
+    serviceName : booking.name,
+    description: booking.description,
+    paymentMethod : "credit card",
+    status : "pending",
+    image : booking.img ,
+    paymentDetails : paymentSuccess || "Your Payment is incomplete"
+  }
+  fetch("http://localhost:5000/addBooking", {
+    method : "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bookingData)
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+}
 
   return (
     <div>
@@ -46,13 +70,13 @@ const Booking = () => {
           type="price"
           class="form-control mb-2"
           value={"$"+booking.price}
-        />
-        <button type="submit" class="btn btn-primary">
+        /> <br/>
+      </form>
+
+    <ProcessPayment paymentSuccess={paymentSuccess} setPaymentSuccess={setPaymentSuccess} /> <br/>
+      <button type="submit" onClick={handleSubmitBooking} class="btn btn-primary">
           Submit
         </button>
-      </form>
-      <ProcessPayment/>
-      
     </div>
   );
 };
