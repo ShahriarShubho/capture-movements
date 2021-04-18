@@ -13,7 +13,7 @@ const UserReview = () => {
             ratting : data.ratting,
             description : data.description,
         }
-        fetch("http://localhost:5000/addReview", { 
+        fetch("https://powerful-badlands-46047.herokuapp.com/addReview", { 
             method : 'POST',
             headers : { "Content-Type": "application/json"},
             body : JSON.stringify(reviewData)

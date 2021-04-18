@@ -4,25 +4,23 @@ import { Table, Form } from "react-bootstrap";
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://powerful-badlands-46047.herokuapp.com/orders")
       .then((response) => response.json())
       .then((data) => setOrders(data));
-  }, []);
+  }, [orders]);
 
-  // onChange={(e) => handleChange(e, order._id)}
+  const handleChange = (e, id) => {
 
-  // const handleChange = (e, id) => {
-  //   console.log(e, id)
-  //   fetch(`http://localhost:5000/update/${id}`, {
-  //     method: 'PATCH',
-  //     headers: { "Content-Type": "application/json"},
-  //     body: JSON.stringify({ 
-  //       status : e.target.value
-  //     })
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => console.log(data))
-  // }
+    fetch(`https://powerful-badlands-46047.herokuapp.com/update/${id}`, {
+      method: 'PATCH',
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({ 
+        status : e.target.value
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+  }
   return (
     <div className="text-center">
       <h3 className="mt-3">Total Order {orders.length}</h3>
@@ -49,7 +47,7 @@ const OrderList = () => {
               <td>
                 <Form>
                 <Form.Group controlId="exampleForm.SelectCustom">
-                  <Form.Control  as="select" custom>
+                  <Form.Control  onChange={(e) => handleChange(e, order._id)} as="select" custom>
                     <option>{order.status}</option>
                     <option value='pending'>Pending</option>
                     <option  value='on going'>On Going</option>

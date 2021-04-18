@@ -12,7 +12,7 @@ const Booking = () => {
   console.log(booking)
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bookingById/${id}`)
+    fetch(`https://powerful-badlands-46047.herokuapp.com/bookingById/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setBooking(data);
@@ -31,7 +31,7 @@ const handleSubmitBooking = () => {
     image : booking.img ,
     paymentDetails : paymentSuccess || "Your Payment is incomplete"
   }
-  fetch("http://localhost:5000/addBooking", {
+  fetch("https://powerful-badlands-46047.herokuapp.com/addBooking", {
     method : "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(bookingData)

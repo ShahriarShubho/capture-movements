@@ -20,7 +20,6 @@ function App() {
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
    <Router>
-     {loggedInUser.name}
       <Switch>
           <Route path="/home">
             <Home/>
@@ -28,9 +27,9 @@ function App() {
           <Route path="/login">
             <LogIn/>
           </Route>
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
            <Dashboard/>
-          </Route>
+          </PrivateRoute>
           <Route exact path="/">
             <Home />
           </Route>

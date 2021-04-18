@@ -8,7 +8,7 @@ const MakeAdmin = () => {
             name: data.name,
             email: data.email
         }
-        fetch("http://localhost:5000/makeAdmin", {
+        fetch("https://powerful-badlands-46047.herokuapp.com/makeAdmin", {
             method: "POST",
             headers: { 'Content-Type' : 'application/json'},
             body : JSON.stringify(adminData)

@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 const ManageService = () => {
     const [service, setService] = useState([])
     useEffect(() => {     
-        fetch("http://localhost:5000/services")
+        fetch("https://powerful-badlands-46047.herokuapp.com/services")
           .then((response) => response.json())
           .then((data) => {
             setService(data);
@@ -13,7 +13,7 @@ const ManageService = () => {
       }, [service]);
 
       const handleDelete = (id) => {
-          fetch(`http://localhost:5000/delete/${id}`, {
+          fetch(`https://powerful-badlands-46047.herokuapp.com/delete/${id}`, {
               method: 'DELETE'
           })
           .then(response => response.json())

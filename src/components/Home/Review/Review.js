@@ -4,7 +4,7 @@ import ReviewCard from '../ReviewCard/ReviewCard';
 const Review = () => {
    const [reviewData, setReviewData] = React.useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
+        fetch("https://powerful-badlands-46047.herokuapp.com/reviews")
         .then(response => response.json())
         .then(data => setReviewData(data))
     }, [])

@@ -11,6 +11,7 @@ import AddServices from "../AddServices/AddServices";
 import "./Dashboard.css";
 import PrivateRoute from "../../LogIn/PrivateRoute/PrivateRoute";
 import { UserContext } from "../../../App";
+import { Navbar, Nav } from "react-bootstrap";
 
 const Dashboard = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext)
@@ -19,7 +20,7 @@ const Dashboard = () => {
   const [isAdmin, setIsAdmin] = React.useState(false)
 
   useEffect(() => {
-    fetch("http://localhost:5000/isAdmin", {
+    fetch("https://powerful-badlands-46047.herokuapp.com/isAdmin", {
       method: "POST",
       headers: { 'Content-Type' : 'application/json'},
       body : JSON.stringify({email : loggedInUser.email})
@@ -29,6 +30,15 @@ const Dashboard = () => {
   }, [])
 
   return (
+    <section>
+   <Navbar  bg="light" expand="lg">
+  <Navbar.Brand as={Link} to="/home"><img style={{ height : "80px"}} src="https://www.capturethemoment4.me/wp-content/uploads/2017/10/Framed-Capture-the-Moment-Logo.png" alt=""/></Navbar.Brand>
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="ml-auto mr-3 font-weight-bold">
+      <Nav.Link>{loggedInUser.name}</Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
     <div className="row container-fluid">
       <div className="col-md-2 sidebar">
         <h1>{id}</h1>
@@ -91,6 +101,7 @@ const Dashboard = () => {
         </Switch>
       </div>
     </div>
+    </section>
   );
 };
 

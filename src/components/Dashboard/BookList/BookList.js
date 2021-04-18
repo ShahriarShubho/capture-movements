@@ -6,7 +6,7 @@ const BookList = () => {
   const [booking, setBooking] = useState();
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:5000/booking?email=" + loggedInUser.email)
+    fetch("https://powerful-badlands-46047.herokuapp.com/booking?email=" + loggedInUser.email)
       .then((response) => response.json())
       .then((data) => setBooking(data));
   }, []);
