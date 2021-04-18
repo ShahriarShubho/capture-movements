@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
+import swal from 'sweetalert';
 import { UserContext } from '../../../App';
 
 const UserReview = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser] = useContext(UserContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const reviewData = {
@@ -19,7 +20,11 @@ const UserReview = () => {
             body : JSON.stringify(reviewData)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if(data){
+                swal("Thank U!", "Your Review is added", "success");
+            }
+        })
     };
 
     return (

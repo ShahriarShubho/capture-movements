@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Form } from "react-bootstrap";
+import swal from "sweetalert";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
@@ -19,7 +20,11 @@ const OrderList = () => {
       })
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+      if(data){
+        swal("Nice work!", "Status has been changed", "success");
+      }
+    })
   }
   return (
     <div className="text-center">

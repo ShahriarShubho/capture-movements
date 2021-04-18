@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 const ManageService = () => {
     const [service, setService] = useState([])
@@ -17,7 +18,11 @@ const ManageService = () => {
               method: 'DELETE'
           })
           .then(response => response.json())
-          .then(data => console.log(data))
+          .then(data => {
+            if(data){
+              swal("Good Job!", "service successfully deleted", "success");
+            }
+          })
       }
     return (
         <div>

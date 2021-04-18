@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { UserContext } from "../../../App";
 import ProcessPayment from "../ProcessPayment/ProcessPayment";
+import swal from "sweetalert";
 
 const Booking = () => {
   const[loggedInUser, setLoggedInUser] = useContext(UserContext)
@@ -37,7 +38,14 @@ const handleSubmitBooking = () => {
     body: JSON.stringify(bookingData)
   })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data =>{
+    if(data){
+      swal("Good Job!", "Your Booking is success", "success");
+    }
+    else{
+      swal("Opppsss!", "something wrong", "error");
+    }
+  })
 }
 
   return (

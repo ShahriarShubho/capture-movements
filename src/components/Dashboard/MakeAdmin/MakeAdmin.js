@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
+import swal from "sweetalert";
 
 const MakeAdmin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,7 +15,13 @@ const MakeAdmin = () => {
             body : JSON.stringify(adminData)
         })
         .then(res => res.json())
-        .then(success => console.log("success"))
+        .then(success => {
+          if(success){
+            swal("Great!", "Admin has successfully added", "success");
+          }else{
+            swal("Opppsss!", "something wrong", "error");
+          }
+        })
     }
 
   return (

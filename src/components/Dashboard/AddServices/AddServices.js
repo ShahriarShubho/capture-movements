@@ -1,21 +1,18 @@
 import React, { useContext, useState } from "react";
 import { Form, Col, Button } from "react-bootstrap";
-import { UserContext } from "../../../App";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import axios from "axios";
 
 const AddServices = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext)
-  const [info,  setInfo] = useState({})
-  const [file, setFile] = useState(null)
+  const [info, setInfo] = useState({});
+  const [file, setFile] = useState(null);
 
-  const handleBlur = event => {
-    const newInfo = {...info}
+  const handleBlur = (event) => {
+    const newInfo = { ...info };
     newInfo[event.target.name] = event.target.value;
-    setInfo(newInfo)
- 
-  }
-  const handleChangeFile = event => {
+    setInfo(newInfo);
+  };
+  const handleChangeFile = (event) => {
     const imageData = new FormData();
     imageData.set("key", "07945127d96230e24a48010e87b1a758");
     imageData.append("image", event.target.files[0]);
@@ -28,9 +25,9 @@ const AddServices = () => {
       .catch(function (error) {
         swal("Opppsss!", `${error}`, "error");
       });
-  }
- 
-  const handleSubmit = event => {
+  };
+
+  const handleSubmit = (event) => {
     const eventData = {
       name: info.name,
       price: info.price,
@@ -47,39 +44,48 @@ const AddServices = () => {
       .then((data) => {
         if (data) {
           swal("Nice Work!", "Service successfully added!", "success");
-          // document.getElementById("name").value = "";
-          // document.getElementById("price").value = "";
-          // document.getElementById("photo").value = null;
         }
       });
-  event.preventDefault()
-}
-  
+    event.preventDefault();
+  };
+
   return (
     <div>
       <Form onSubmit={handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridText">
             <Form.Label>Service Name</Form.Label>
-            <Form.Control type="text" onBlur={handleBlur} name="name" placeholder="Enter the service name" />
+            <Form.Control
+              type="text"
+              onBlur={handleBlur}
+              name="name"
+              placeholder="Enter the service name"
+            />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridNumber">
             <Form.Label>Price</Form.Label>
-            <Form.Control type="number"  onBlur={handleBlur} name="price" placeholder="Enter the service price" />
+            <Form.Control
+              type="number"
+              onBlur={handleBlur}
+              name="price"
+              placeholder="Enter the service price"
+            />
           </Form.Group>
+
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridTextArea">
             <Form.Label>Write the service description</Form.Label>
             <textarea
-             onBlur={handleBlur}
-            name="description"
+              onBlur={handleBlur}
+              name="description"
               className="form-control"
               placeholder="description"
               aria-label="With textarea"
             ></textarea>
           </Form.Group>
+
           <Form.Group className="mt-2" as={Col} controlId="formGridFile">
             <Form.Label>Upload Service Photos</Form.Label>
             <Form.Control name="file" onChange={handleChangeFile} type="file" />
@@ -91,7 +97,6 @@ const AddServices = () => {
       </Form>
     </div>
   );
-  
 };
 
 export default AddServices;
