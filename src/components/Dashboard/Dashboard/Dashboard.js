@@ -14,7 +14,7 @@ import { UserContext } from "../../../App";
 import { Navbar, Nav } from "react-bootstrap";
 
 const Dashboard = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+  const [loggedInUser] = useContext(UserContext)
   let { path, url } = useRouteMatch();
   const { id } = useParams();
   const [isAdmin, setIsAdmin] = React.useState(false)

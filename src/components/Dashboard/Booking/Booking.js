@@ -5,7 +5,7 @@ import ProcessPayment from "../ProcessPayment/ProcessPayment";
 import swal from "sweetalert";
 
 const Booking = () => {
-  const[loggedInUser, setLoggedInUser] = useContext(UserContext)
+  const[loggedInUser] = useContext(UserContext)
   const { id } = useParams();
   const [booking, setBooking] = useState({});
   const [paymentSuccess, setPaymentSuccess] = useState(null)
@@ -18,7 +18,7 @@ const Booking = () => {
       .then((data) => {
         setBooking(data);
       });
-  }, []);
+  }, [id]);
 
 
 const handleSubmitBooking = () => {

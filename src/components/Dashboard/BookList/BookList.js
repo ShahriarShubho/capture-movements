@@ -14,7 +14,7 @@ const BookList = () => {
     )
       .then((response) => response.json())
       .then((data) => setBooking(data));
-  }, []);
+  }, [loggedInUser.email]);
   return (
     <div>
       <div className="row">
