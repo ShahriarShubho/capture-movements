@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Route, Switch, useParams, useRouteMatch } from "react-router";
+import { Route, Switch, useRouteMatch } from "react-router";
 import { Link } from "react-router-dom";
 import BookList from "../BookList/BookList";
 import Booking from "../Booking/Booking";
@@ -12,7 +12,6 @@ import "./Dashboard.css";
 import PrivateRoute from "../../LogIn/PrivateRoute/PrivateRoute";
 import { UserContext } from "../../../App";
 import { Navbar, Nav } from "react-bootstrap";
-import Footer from "../../Home/Footer/Footer";
 
 const Dashboard = () => {
   const [loggedInUser] = useContext(UserContext)
@@ -33,9 +32,8 @@ const Dashboard = () => {
   return (
     <section>
    <Navbar  bg="light" expand="lg">
-  <Navbar.Brand as={Link} to="/home"><img style={{ height : "80px"}} src="https://www.capturethemoment4.me/wp-content/uploads/2017/10/Framed-Capture-the-Moment-Logo.png" alt=""/></Navbar.Brand>
   <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="ml-auto mr-3 font-weight-bold">
+    <Nav className="mr-auto font-weight-bold">
       <Nav.Link>{loggedInUser.name}</Nav.Link>
     </Nav>
   </Navbar.Collapse>
@@ -106,7 +104,6 @@ const Dashboard = () => {
         </Switch>
       </div>
     </div>
-    <Footer/>
     </section>
   );
 };

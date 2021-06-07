@@ -36,7 +36,7 @@ const LogIn = () => {
   };
   return (
     <div>
-      <div className="logIn-container">
+      <div className="logIn-container mb-5 pb-3">
         <img
           className="img-container img-fluid"
           src="https://www.capturethemoment4.me/wp-content/uploads/2017/10/Framed-Capture-the-Moment-Logo.png"

@@ -15,7 +15,7 @@ const Services = () => {
       });
   }, []);
   return (
-    <section className="container-fluid">
+    <section id="services" className="container-fluid">
       <h2 className="text-center py-4">This Services We Provide</h2>
       <div className="row">
         {loading && (

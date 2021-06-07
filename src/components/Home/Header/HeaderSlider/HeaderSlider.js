@@ -15,7 +15,7 @@ const HeaderSlider = () => {
         <Carousel.Caption>
           <h3>The Artsy Lens</h3>
           <p>The Dark Room Portrait Studio</p>
-          <Link to="/services">
+          <Link to="/service">
             <button className="btn btn-primary">Get All Services</button>
           </Link>{" "}
         </Carousel.Caption>
@@ -31,7 +31,7 @@ const HeaderSlider = () => {
         <Carousel.Caption>
           <h3>Bark-tastic Photography</h3>
           <p>Flutter Me Shutters Photography</p>
-          <Link to="/services">
+          <Link to="/service">
             <button className="btn btn-primary">Get All Services</button>
           </Link>
         </Carousel.Caption>
@@ -45,9 +45,9 @@ const HeaderSlider = () => {
         />
 
         <Carousel.Caption>
-          <h3>Natural Light Photography</h3>
+          <h3>Natural Photography</h3>
           <p>Choose Your Own Adventure Photography</p>
-          <Link to="/services">
+          <Link to="/service">
             <button className="btn btn-primary">Get All Services</button>
           </Link>{" "}
         </Carousel.Caption>

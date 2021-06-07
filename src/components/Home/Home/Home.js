@@ -1,7 +1,6 @@
 import React from "react";
 import ChooseUs from "../ChooseUs/ChooseUs";
 import Contract from "../Contract/Contract";
-import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import PrivacyPolicy from "../PrivacyPolicy/PrivacyPolicy";
 import Review from "../Review/Review";
@@ -16,7 +15,6 @@ const Home = () => {
       <PrivacyPolicy />
       <Review />
       <Contract />
-      <Footer />
     </div>
   );
 };
