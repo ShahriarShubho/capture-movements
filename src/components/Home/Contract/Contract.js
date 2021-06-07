@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Contract = () => {
+  
+  useEffect(() => {
+    AOS.init({ duration: 1500 });
+  }, []);
+
   return (
-    <div className="bg-light p-5">
+    <div data-aos="fade-up" className="bg-light p-5">
       <h1 className="text-center">Contract Us</h1>
       <form className="w-50 m-auto">
         <div class="form-group ">

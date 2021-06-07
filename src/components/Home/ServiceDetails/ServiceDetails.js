@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import "./ServiceDetails.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ServiceDetails = ({ service }) => {
   const { name, description, price, img, _id } = service;
@@ -10,8 +12,12 @@ const ServiceDetails = ({ service }) => {
     history.push(`/dashboard/booking/${bookingId}`);
   };
 
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
-    <section className=" col-md-6 service-section">
+    <section data-aos="zoom-in" className=" col-md-6 service-section">
       <div
         onClick={() => handleClick(_id)}
         className="m-3 d-flex justify-content-between shadow service-container"

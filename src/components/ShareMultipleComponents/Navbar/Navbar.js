@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Nav, Navbar, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Navbars = () => {
+
+  useEffect(() => {
+    AOS.init({ duration: 1500 });
+  }, []);
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar data-aos="fade-down" bg="light" expand="lg">
   <Navbar.Brand as={Link} to="/home"><img style={{ width : "100px", height : "40px"}} src="https://www.capturethemoment4.me/wp-content/uploads/2017/10/Framed-Capture-the-Moment-Logo.png" alt=""/></Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
